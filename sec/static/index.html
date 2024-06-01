@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        async function fetchProducts() {
+            const response = await fetch('/api/products');
+            const products = await response.json();
+            const tableBody = document.getElementById('product-table');
+
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.price}</td>
+                    <td>${product.vat}</td>
+                    <td>${product.netPrice}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchProducts);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>VAT Calculator</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>id สินค้า</th>
+                    <th>ราคา (บาท)</th>
+                    <th>VAT 7%</th>
+                    <th>ราคาสุทธิ (บาท)</th>
+                </tr>
+            </thead>
+            <tbody id="product-table">
+                <!-- Products will be injected here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
