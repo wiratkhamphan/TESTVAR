@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"testvar/sec/data"
+	routerapishopbook "testvar/sec/static/shop_book/black_end/router_api_shop_book"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gofiber/fiber/v2"
@@ -67,6 +68,7 @@ func upvat(c *fiber.Ctx) error {
 }
 
 func main() {
+
 	var err error
 	db, err = data.DBConnection()
 	if err != nil {
@@ -85,6 +87,7 @@ func main() {
 
 	app.Get("/api/products", getProducts)
 	app.Post("/api/products1", upvat)
+	routerapishopbook.SetupRouter_shop_book(app)
 
 	log.Fatal(app.Listen("0.0.0.0:8080"))
 }

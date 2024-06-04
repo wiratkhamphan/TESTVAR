@@ -18,8 +18,8 @@ type Env struct {
 	DBname   string
 }
 
-func ConnfileEnv() (*Env, error) {
-	envPath := filepath.Join("./sec/data/", ".env")
+func ConnfileEnv_book() (*Env, error) {
+	envPath := filepath.Join("./sec/data/data_shop_book", ".env")
 
 	err := godotenv.Load(envPath)
 
@@ -31,15 +31,15 @@ func ConnfileEnv() (*Env, error) {
 		DBdriver: os.Getenv("DB_Driver"),
 		DBuser:   os.Getenv("DB_User"),
 		DBpass:   os.Getenv("DB_Pass"),
-		DBname:   os.Getenv("DB_Name"),
+		DBname:   os.Getenv("DB_Name1"),
 	}
 	// Test connect file mysql.env
 	// fmt.Println(Env)
 	return Env, nil
 }
 
-func DBConnection() (*sql.DB, error) {
-	env, err := ConnfileEnv()
+func DBConnection_book() (*sql.DB, error) {
+	env, err := ConnfileEnv_book()
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,9 @@ func DBConnection() (*sql.DB, error) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("ConnfileEnv", env)
+
+	fmt.Println("ConnfileEnv_book", env)
 	// defer db.Close()
 	return db, err
+
 }
