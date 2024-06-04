@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAT Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
     <script>
         async function fetchProducts() {
-            const response = await fetch('http://localhost:8080/api/products');
+            const response = await fetch('http://localhost:8080/Get_book');
             const products = await response.json();
-            const tableBody = document.getElementById('product-table');
+            const tableBody = document.getElementById('Get_book');
 
             products.forEach(product => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${product.id}</td>
-                    <td>${product.price}</td>
-                    <td>${product.vat}</td>
-                    <td>${product.netPrice}</td>
+                    <td>${product.b_book}</td>
+                    <td>${product.b_name}</td>
+                    <td>${product.b_price}</td>
+                    <td>${product.b_file}</td>
+                    <td>${product.b_stock}</td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -27,19 +28,19 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>VAT Calculator</h1>
+    <div class="">
+        <h1>Test</h1>
         <table>
             <thead>
                 <tr>
-                    <th>id สินค้า</th>
-                    <th>ราคา (บาท)</th>
-                    <th>VAT 7%</th>
-                    <th>ราคาสุทธิ (บาท)</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody id="product-table">
-                <!-- Products will be injected here by JavaScript -->
+            <tbody  id="Get_book" >
+
             </tbody>
         </table>
     </div>
