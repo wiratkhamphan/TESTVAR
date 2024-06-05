@@ -84,10 +84,13 @@ func main() {
 
 	app.Static("/", "./sec/static")
 	app.Static("/up", "./sec/static/upvat")
+	app.Static("/images", "D:/TEST_golang/testvar/sec/static/shop_book/black_end/router_api_shop_book/update_the_guarantee_document/images")
 
 	app.Get("/api/products", getProducts)
 	app.Post("/api/products1", upvat)
 	routerapishopbook.SetupRouter_shop_book(app)
 
-	log.Fatal(app.Listen("0.0.0.0:8080"))
+	if err := app.Listen("0.0.0.0:8080"); err != nil {
+		log.Fatalf("error stating server: %v", err)
+	}
 }
