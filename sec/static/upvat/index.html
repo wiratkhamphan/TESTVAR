@@ -9,7 +9,8 @@
     <form id="priceForm">
         <label for="price">ราคา</label>
         <input type="text" id="price" name="price" placeholder="Price" required>
-        <input type="submit" value="submit">
+        <input type="file" id="image" name="image" required>
+        <input type="submit" value="Submit">
     </form>
 
     <script>
@@ -17,13 +18,15 @@
             event.preventDefault();
 
             const price = document.getElementById('price').value;
+            const image = document.getElementById('image').files[0];
+
+            const formData = new FormData();
+            formData.append('price', price);
+            formData.append('image', image);
 
             const response = await fetch('http://127.0.0.1:8080/api/products1', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ price: parseFloat(price) })
+                body: formData
             });
 
             const result = await response.json();

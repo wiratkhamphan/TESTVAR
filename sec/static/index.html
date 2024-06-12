@@ -18,9 +18,19 @@
                     <td>${product.price}</td>
                     <td>${product.vat}</td>
                     <td>${product.netPrice}</td>
+                    <td>
+                        <a href="${product.imageUrl}" target="_blank">
+                            <img src="${product.imageUrl}" alt="Product Image" width="100">
+                        </a>
+                        <input type="button" value="ดู" onclick="viewImage('${product.imageUrl}')">
+                    </td>
                 `;
                 tableBody.appendChild(row);
             });
+        }
+
+        async function viewImage(imageUrl) {
+            window.open(imageUrl, 'popup', 'width=500,height=500');
         }
 
         document.addEventListener('DOMContentLoaded', fetchProducts);
@@ -36,6 +46,7 @@
                     <th>ราคา (บาท)</th>
                     <th>VAT 7%</th>
                     <th>ราคาสุทธิ (บาท)</th>
+                    <th>รูป</th>
                 </tr>
             </thead>
             <tbody id="product-table">
